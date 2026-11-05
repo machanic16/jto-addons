@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="server_service_view_list" model="ir.ui.view">
+        <field name="name">server.service.list</field>
+        <field name="model">server.service</field>
+        <field name="arch" type="xml">
+            <list string="Server Services">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="url" widget="url"/>
+                <field name="access" widget="badge"
+                       decoration-success="access == 'public'"
+                       decoration-info="access == 'tailnet'"
+                       decoration-warning="access == 'lan'"
+                       decoration-muted="access == 'local'"/>
+                <field name="state" widget="badge"
+                       decoration-success="state == 'up'"
+                       decoration-danger="state == 'down'"
+                       decoration-muted="state == 'unknown'"/>
+                <field name="last_check" optional="show"/>
+                <field name="last_result" optional="hide"/>
+                <field name="category" optional="hide"/>
+                <field name="port" optional="hide"/>
+                <field name="runtime_ref" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="server_service_view_form" model="ir.ui.view">
+        <field name="name">server.service.form</field>
+        <field name="model">server.service</field>
+        <field name="arch" type="xml">
+            <form string="Server Service">
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="unknown,up,down"/>
+                </header>
+                <sheet>
+                    <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger" invisible="active"/>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" placeholder="e.g. Immich"/></h1>
+                    </div>
+                    <group>
+                        <group string="Access">
+                            <field name="url" widget="url"/>
+                            <field name="access"/>
+                            <field name="category"/>
+                        </group>
+                        <group string="Status">
+                            <field name="last_check"/>
+                            <field name="last_result"/>
+                            <field name="check_url" placeholder="Leave empty to test the URL"/>
+                        </group>
+                        <group string="Runs as">
+                            <field name="runtime"/>
+                            <field name="runtime_ref"/>
+                            <field name="port"/>
+                        </group>
+                        <group string="Other">
+                            <field name="sequence"/>
+                            <field name="active" invisible="1"/>
+                        </group>
+                    </group>
+                    <field name="notes" placeholder="How it is set up, credentials location, gotchas..."/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="server_service_view_search" model="ir.ui.view">
+        <field name="name">server.service.search</field>
+        <field name="model">server.service</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="url"/>
+                <field name="runtime_ref"/>
+                <filter name="public" string="Public" domain="[('access', '=', 'public')]"/>
+                <filter name="tailnet" string="Tailnet only" domain="[('access', '=', 'tailnet')]"/>
+                <filter name="lan" string="Home network" domain="[('access', '=', 'lan')]"/>
+                <separator/>
+                <filter name="down" string="Down" domain="[('state', '=', 'down')]"/>
+                <separator/>
+                <filter name="archived" string="Archived" domain="[('active', '=', False)]"/>
+                <group>
+                    <filter name="group_category" string="Category" context="{'group_by': 'category'}"/>
+                    <filter name="group_access" string="Access" context="{'group_by': 'access'}"/>
+                    <filter name="group_state" string="Status" context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="server_service_action" model="ir.actions.act_window">
+        <field name="name">Server Services</field>
+        <field name="res_model">server.service</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_group_category': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Add the first service running on this server</p>
+            <p>Each service gets a clickable URL and a live up/down status.</p>
+        </field>
+    </record>
+
+    <menuitem id="menu_server_services_root" name="Server Services"
+              web_icon="jto_server_services,static/description/icon.png"
+              groups="base.group_system" sequence="90"/>
+    <menuitem id="menu_server_services" name="Services" parent="menu_server_services_root"
+              action="server_service_action" sequence="1"/>
+</odoo>

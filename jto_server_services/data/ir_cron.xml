@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="ir_cron_mark_stale" model="ir.cron">
+        <field name="name">Server Services: mark stale statuses as unknown</field>
+        <field name="model_id" ref="model_server_service"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_mark_stale()</field>
+        <field name="interval_number">5</field>
+        <field name="interval_type">minutes</field>
+    </record>
+</odoo>

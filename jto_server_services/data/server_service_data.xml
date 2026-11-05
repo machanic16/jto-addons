@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- noupdate: edits made in Odoo survive module upgrades. -->
+    <data noupdate="1">
+        <record id="svc_odoo_backend" model="server.service">
+            <field name="sequence">10</field>
+            <field name="name">Odoo (backend)</field>
+            <field name="category">business</field>
+            <field name="url">https://jto.tail426832.ts.net/odoo</field>
+            <field name="check_url">https://jto.tail426832.ts.net/web/login</field>
+            <field name="access">tailnet</field>
+            <field name="port">443</field>
+            <field name="runtime">docker</field>
+            <field name="runtime_ref">odoo20-odoo-1, odoo20-nginx-1, odoo20-db-1</field>
+            <field name="notes">Odoo 20 Community, ~/odoo20 (docker compose). Tailscale :443 -> nginx 127.0.0.1:8070 -> odoo:8069. Backend paths are blocked for public (Funnel) visitors by ~/odoo20/nginx/odoo.conf.</field>
+        </record>
+        <record id="svc_odoo_website" model="server.service">
+            <field name="sequence">11</field>
+            <field name="name">Odoo website (Joel Tovar)</field>
+            <field name="category">business</field>
+            <field name="url">https://jto.tail426832.ts.net/</field>
+            <field name="check_url">http://127.0.0.1:8071/</field>
+            <field name="access">public</field>
+            <field name="port">443</field>
+            <field name="runtime">docker</field>
+            <field name="runtime_ref">odoo20-nginx-1</field>
+            <field name="notes">Public through Tailscale Funnel; nginx only lets public visitors reach the website. The check uses 127.0.0.1:8071, which applies the public rules.</field>
+        </record>
+        <record id="svc_immich_tailnet" model="server.service">
+            <field name="sequence">20</field>
+            <field name="name">Immich</field>
+            <field name="category">photos</field>
+            <field name="url">https://jto.tail426832.ts.net:2283</field>
+            <field name="check_url">https://jto.tail426832.ts.net:2283/api/server/ping</field>
+            <field name="access">tailnet</field>
+            <field name="port">2283</field>
+            <field name="runtime">docker</field>
+            <field name="runtime_ref">immich_server</field>
+            <field name="notes">~/immich-app. Uploads in /mnt/drive/immich; external library "Camera Dumps" (folder name ends with an invisible character).</field>
+        </record>
+        <record id="svc_immich_public" model="server.service">
+            <field name="sequence">21</field>
+            <field name="name">Immich (public)</field>
+            <field name="category">photos</field>
+            <field name="url">https://jto.tail426832.ts.net:10000</field>
+            <field name="check_url">https://jto.tail426832.ts.net:10000/api/server/ping</field>
+            <field name="access">public</field>
+            <field name="port">10000</field>
+            <field name="runtime">docker</field>
+            <field name="runtime_ref">immich_server</field>
+            <field name="notes">Tailscale Funnel. Disable with: tailscale funnel --https=10000 off</field>
+        </record>
+        <record id="svc_frigate" model="server.service">
+            <field name="sequence">30</field>
+            <field name="name">Frigate (cameras)</field>
+            <field name="category">security</field>
+            <field name="url">https://jto.tail426832.ts.net:8443</field>
+            <field name="access">tailnet</field>
+            <field name="port">8443</field>
+            <field name="runtime">docker</field>
+            <field name="runtime_ref">frigate</field>
+            <field name="notes">~/frigate. Container port bound to 127.0.0.1:8971 (self-signed TLS), published on the tailnet by Tailscale serve.</field>
+        </record>
+        <record id="svc_jellyfin_lan" model="server.service">
+            <field name="sequence">40</field>
+            <field name="name">Jellyfin</field>
+            <field name="category">media</field>
+            <field name="url">http://192.168.1.140:8096</field>
+            <field name="check_url">http://192.168.1.140:8096/health</field>
+            <field name="access">lan</field>
+            <field name="port">8096</field>
+            <field name="runtime">systemd</field>
+            <field name="runtime_ref">jellyfin.service</field>
+            <field name="notes">Native install. Movies in /mnt/drive/Movies. Waits for the USB drive at boot (jellyfin.service.d/wait-for-drive.conf). Used by the Fire TV Stick.</field>
+        </record>
+        <record id="svc_jellyfin_tailnet" model="server.service">
+            <field name="sequence">41</field>
+            <field name="name">Jellyfin (via tailnet)</field>
+            <field name="category">media</field>
+            <field name="url">http://jto.tail426832.ts.net:8096</field>
+            <field name="check_url">http://jto.tail426832.ts.net:8096/health</field>
+            <field name="access">tailnet</field>
+            <field name="port">8096</field>
+            <field name="runtime">systemd</field>
+            <field name="runtime_ref">jellyfin.service</field>
+            <field name="notes">Same Jellyfin server, reachable away from home over Tailscale (plain http).</field>
+        </record>
+        <record id="svc_ssh" model="server.service">
+            <field name="sequence">90</field>
+            <field name="name">SSH</field>
+            <field name="category">system</field>
+            <field name="url">ssh://brownie@192.168.1.140</field>
+            <field name="check_url">tcp://192.168.1.140:22</field>
+            <field name="access">lan</field>
+            <field name="port">22</field>
+            <field name="runtime">systemd</field>
+            <field name="runtime_ref">ssh.service</field>
+            <field name="notes">Also reachable over the tailnet: ssh brownie@jto.tail426832.ts.net</field>
+        </record>
+        <record id="svc_cups" model="server.service">
+            <field name="sequence">91</field>
+            <field name="name">CUPS (printing)</field>
+            <field name="category">system</field>
+            <field name="url">http://localhost:631</field>
+            <field name="check_url">http://127.0.0.1:631</field>
+            <field name="access">local</field>
+            <field name="port">631</field>
+            <field name="runtime">systemd</field>
+            <field name="runtime_ref">cups.service</field>
+            <field name="notes">Only reachable from a browser on the server itself.</field>
+        </record>
+    </data>
+</odoo>
