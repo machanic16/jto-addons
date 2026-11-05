@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="landing_page_record" model="website.page">
+        <field name="url">/joel-tovar</field>
+        <field name="is_published">True</field>
+        <field name="view_id" ref="landing_page"/>
+        <field name="track">True</field>
+        <field name="website_meta_title">Joel Tovar | Business Analyst &amp; Consultant</field>
+        <field name="website_meta_description">Business analysis and business development, CCTV camera systems for buildings and stores, and on-premises cloud solutions.</field>
+    </record>
+</odoo>

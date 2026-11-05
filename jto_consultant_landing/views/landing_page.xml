@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Reusable inline SVG icons (Odoo 20 ships only a subset icon font). -->
+    <template id="landing_icon" name="Landing icon">
+        <svg class="jto-icon" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor"
+             stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <t t-if="icon == 'chart'">
+                <path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/><path d="M15 8h4v4"/>
+            </t>
+            <t t-elif="icon == 'camera'">
+                <path d="M3 7h12a2 2 0 0 1 2 2v1l4-2v8l-4-2v1a2 2 0 0 1-2 2H3z"/><circle cx="9" cy="12.5" r="2.5"/>
+            </t>
+            <t t-elif="icon == 'server'">
+                <rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/>
+                <path d="M7 7.5h.01M7 16.5h.01M11 7.5h6M11 16.5h6"/>
+            </t>
+            <t t-elif="icon == 'check'">
+                <path d="M5 12.5l4.5 4.5L19 7.5"/>
+            </t>
+            <t t-elif="icon == 'arrow'">
+                <path d="M5 12h14"/><path d="M13 6l6 6-6 6"/>
+            </t>
+            <t t-elif="icon == 'linkedin'">
+                <rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10.5V16M8 7.5v.01M12 16v-3.2a2.3 2.3 0 0 1 4.6 0V16M12 10.5V16"/>
+            </t>
+        </svg>
+    </template>
+
+    <template id="landing_page" name="Joel Tovar - Landing">
+        <t t-call="website.layout" pageName.f="jto_consultant_landing">
+            <t t-set="linkedin_url" t-value="'https://www.linkedin.com/in/joel-tovar'"/>
+            <t t-set="current_lang" t-value="request.env.lang or 'en_US'"/>
+            <div id="wrap" class="jto-landing">
+
+                <!-- Hero -->
+                <section class="jto-hero">
+                    <div class="container">
+                        <nav class="jto-lang" aria-label="Language">
+                            <!-- Same link helper and JS hook as Odoo's own language selector. -->
+                            <a t-att-href="url_localized(lang_code='en_US', prefetch_langs=True, force_default_lang=True)"
+                               t-attf-class="js_change_lang #{'active' if current_lang == 'en_US' else ''}"
+                               data-url_code="en" hreflang="en">EN</a>
+                            <span aria-hidden="true">/</span>
+                            <a t-att-href="url_localized(lang_code='es_ES', prefetch_langs=True, force_default_lang=True)"
+                               t-attf-class="js_change_lang #{'active' if current_lang == 'es_ES' else ''}"
+                               data-url_code="es" hreflang="es">ES</a>
+                        </nav>
+                        <div class="row align-items-center g-5">
+                            <div class="col-lg-7">
+                                <p class="jto-eyebrow">Business Analyst &amp; Consultant</p>
+                                <h1 class="jto-title">Joel Tovar</h1>
+                                <p class="jto-lead">I help businesses grow by connecting strategy, processes and technology: from business development to security camera systems and on-premises cloud solutions.</p>
+                                <div class="jto-actions">
+                                    <a href="/contactus" class="btn jto-btn-primary">
+                                        <span>Book a consultation</span>
+                                        <t t-set="icon" t-value="'arrow'"/><t t-call="jto_consultant_landing.landing_icon"/>
+                                    </a>
+                                    <a t-att-href="linkedin_url" target="_blank" rel="noopener" class="btn jto-btn-ghost">
+                                        <t t-set="icon" t-value="'linkedin'"/><t t-call="jto_consultant_landing.landing_icon"/>
+                                        <span>View LinkedIn profile</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-5">
+                                <div class="jto-hero-card">
+                                    <div class="jto-monogram" aria-hidden="true">JT</div>
+                                    <ul class="jto-checklist">
+                                        <li>
+                                            <t t-set="icon" t-value="'check'"/><t t-call="jto_consultant_landing.landing_icon"/>
+                                            <span>Business analysis and development</span>
+                                        </li>
+                                        <li>
+                                            <t t-set="icon" t-value="'check'"/><t t-call="jto_consultant_landing.landing_icon"/>
+                                            <span>CCTV systems for buildings and stores</span>
+                                        </li>
+                                        <li>
+                                            <t t-set="icon" t-value="'check'"/><t t-call="jto_consultant_landing.landing_icon"/>
+                                            <span>On-premises cloud solutions</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Services -->
+                <section class="jto-section" id="services">
+                    <div class="container">
+                        <p class="jto-eyebrow text-center">Services</p>
+                        <h2 class="jto-h2 text-center">How I can help your business</h2>
+                        <div class="row g-4 mt-2">
+                            <div class="col-md-4">
+                                <div class="jto-card">
+                                    <div class="jto-card-icon"><t t-set="icon" t-value="'chart'"/><t t-call="jto_consultant_landing.landing_icon"/></div>
+                                    <h3>Business analysis &amp; development</h3>
+                                    <p>I study how your business works today, find the bottlenecks and opportunities, and turn them into a clear plan to grow.</p>
+                                    <ul>
+                                        <li>Process and requirements analysis</li>
+                                        <li>Growth and business development strategy</li>
+                                        <li>Data-driven decision making</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="jto-card">
+                                    <div class="jto-card-icon"><t t-set="icon" t-value="'camera'"/><t t-call="jto_consultant_landing.landing_icon"/></div>
+                                    <h3>Security camera systems (CCTV)</h3>
+                                    <p>Closed-circuit camera systems for office buildings, stores and commercial premises, designed around your space and your needs.</p>
+                                    <ul>
+                                        <li>Site survey and system design</li>
+                                        <li>Installation and configuration</li>
+                                        <li>Local recording and remote viewing</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="jto-card">
+                                    <div class="jto-card-icon"><t t-set="icon" t-value="'server'"/><t t-call="jto_consultant_landing.landing_icon"/></div>
+                                    <h3>On-premises cloud solutions</h3>
+                                    <p>Your own private cloud, running on your own hardware: keep control of your data without depending on third-party services.</p>
+                                    <ul>
+                                        <li>Self-hosted business applications</li>
+                                        <li>File storage, backups and secure remote access</li>
+                                        <li>Maintenance and support</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Process -->
+                <section class="jto-section jto-section-alt">
+                    <div class="container">
+                        <p class="jto-eyebrow text-center">How I work</p>
+                        <h2 class="jto-h2 text-center">A simple, transparent process</h2>
+                        <div class="row g-4 mt-2">
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="jto-step"><span class="jto-step-num">1</span>
+                                    <h3>Discover</h3>
+                                    <p>We talk about your business, your goals and your current challenges.</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="jto-step"><span class="jto-step-num">2</span>
+                                    <h3>Analyze</h3>
+                                    <p>I review your processes, premises and systems to find what to improve.</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="jto-step"><span class="jto-step-num">3</span>
+                                    <h3>Implement</h3>
+                                    <p>I deliver the solution: a growth plan, a camera system or your own cloud.</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="jto-step"><span class="jto-step-num">4</span>
+                                    <h3>Support</h3>
+                                    <p>I stay by your side to measure results and keep everything running.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Why -->
+                <section class="jto-section">
+                    <div class="container">
+                        <div class="row g-5 align-items-center">
+                            <div class="col-lg-5">
+                                <p class="jto-eyebrow">Why work with me</p>
+                                <h2 class="jto-h2">Business vision with hands-on technical experience</h2>
+                            </div>
+                            <div class="col-lg-7">
+                                <ul class="jto-why">
+                                    <li>
+                                        <t t-set="icon" t-value="'check'"/><t t-call="jto_consultant_landing.landing_icon"/>
+                                        <div><strong>One partner, end to end.</strong> From the business case to the installed system, without having to coordinate several providers.</div>
+                                    </li>
+                                    <li>
+                                        <t t-set="icon" t-value="'check'"/><t t-call="jto_consultant_landing.landing_icon"/>
+                                        <div><strong>Solutions that fit your size.</strong> Practical recommendations for small and medium businesses, not one-size-fits-all packages.</div>
+                                    </li>
+                                    <li>
+                                        <t t-set="icon" t-value="'check'"/><t t-call="jto_consultant_landing.landing_icon"/>
+                                        <div><strong>Your data stays yours.</strong> On-premises solutions that keep your information under your control.</div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Call to action -->
+                <section class="jto-cta">
+                    <div class="container text-center">
+                        <h2 class="jto-h2">Let's talk about your business</h2>
+                        <p class="jto-lead mx-auto">Tell me what you need and I'll get back to you to schedule a first conversation.</p>
+                        <div class="jto-actions justify-content-center">
+                            <a href="/contactus" class="btn jto-btn-primary">
+                                <span>Contact me</span>
+                                <t t-set="icon" t-value="'arrow'"/><t t-call="jto_consultant_landing.landing_icon"/>
+                            </a>
+                            <a t-att-href="linkedin_url" target="_blank" rel="noopener" class="btn jto-btn-ghost">
+                                <t t-set="icon" t-value="'linkedin'"/><t t-call="jto_consultant_landing.landing_icon"/>
+                                <span>LinkedIn</span>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </t>
+    </template>
+</odoo>

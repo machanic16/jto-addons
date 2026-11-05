@@ -1,0 +1,215 @@
+// Joel Tovar landing page. All rules are scoped to .jto-landing.
+.jto-landing {
+    --jto-ink: #0f2133;
+    --jto-ink-soft: #46576a;
+    --jto-navy: #0b1f33;
+    --jto-navy-2: #143553;
+    --jto-accent: #1fa38a;
+    --jto-accent-dark: #17836f;
+    --jto-surface: #ffffff;
+    --jto-surface-alt: #f3f6f9;
+    --jto-border: #dde4eb;
+
+    color: var(--jto-ink);
+    background: var(--jto-surface);
+
+    .jto-icon { flex-shrink: 0; }
+
+    .jto-eyebrow {
+        font-size: .8rem;
+        font-weight: 700;
+        letter-spacing: .14em;
+        text-transform: uppercase;
+        color: var(--jto-accent);
+        margin-bottom: .75rem;
+    }
+
+    .jto-h2 {
+        font-size: unquote("clamp(1.6rem, 1.2rem + 1.6vw, 2.4rem)");
+        font-weight: 700;
+        line-height: 1.2;
+        color: inherit;
+    }
+
+    .jto-lead {
+        font-size: 1.15rem;
+        line-height: 1.65;
+        max-width: 40rem;
+    }
+
+    .jto-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .75rem;
+        margin-top: 2rem;
+    }
+
+    .btn.jto-btn-primary,
+    .btn.jto-btn-ghost {
+        display: inline-flex;
+        align-items: center;
+        gap: .5rem;
+        padding: .8rem 1.4rem;
+        border-radius: .6rem;
+        font-weight: 600;
+        .jto-icon { width: 20px; height: 20px; }
+    }
+    .btn.jto-btn-primary {
+        background: var(--jto-accent);
+        border: 1px solid var(--jto-accent);
+        color: #fff;
+        &:hover, &:focus { background: var(--jto-accent-dark); border-color: var(--jto-accent-dark); color: #fff; }
+    }
+    .btn.jto-btn-ghost {
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, .45);
+        color: #fff;
+        &:hover, &:focus { background: rgba(255, 255, 255, .1); color: #fff; }
+    }
+
+    // Hero
+    .jto-hero {
+        position: relative;
+        padding: 3rem 0 5rem;
+        color: #fff;
+        background:
+            radial-gradient(60rem 30rem at 85% -10%, rgba(31, 163, 138, .35), transparent 60%),
+            linear-gradient(160deg, var(--jto-navy) 0%, var(--jto-navy-2) 100%);
+        .jto-lead { color: rgba(255, 255, 255, .85); }
+        .jto-eyebrow { color: #6fe0c8; }
+    }
+    .jto-lang {
+        display: flex;
+        justify-content: flex-end;
+        gap: .4rem;
+        margin-bottom: 2rem;
+        font-size: .85rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, .5);
+        a {
+            color: rgba(255, 255, 255, .7);
+            text-decoration: none;
+            padding: .15rem .45rem;
+            border-radius: .35rem;
+            &.active { color: var(--jto-navy); background: #fff; }
+            &:hover:not(.active) { color: #fff; }
+        }
+    }
+    .jto-title {
+        font-size: unquote("clamp(2.6rem, 1.8rem + 3.5vw, 4.5rem)");
+        font-weight: 800;
+        letter-spacing: -.02em;
+        line-height: 1.05;
+        color: #fff;
+        margin-bottom: 1.25rem;
+    }
+    .jto-hero-card {
+        background: rgba(255, 255, 255, .06);
+        border: 1px solid rgba(255, 255, 255, .15);
+        border-radius: 1.25rem;
+        padding: 2rem;
+        backdrop-filter: blur(6px);
+    }
+    .jto-monogram {
+        width: 84px;
+        height: 84px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        font-size: 2rem;
+        font-weight: 800;
+        color: var(--jto-navy);
+        background: linear-gradient(135deg, #6fe0c8, var(--jto-accent));
+        margin-bottom: 1.5rem;
+    }
+    .jto-checklist {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        li {
+            display: flex;
+            align-items: center;
+            gap: .75rem;
+            padding: .7rem 0;
+            border-top: 1px solid rgba(255, 255, 255, .12);
+            font-weight: 500;
+        }
+        .jto-icon { color: #6fe0c8; width: 22px; height: 22px; }
+    }
+
+    // Sections
+    .jto-section { padding: 5rem 0; }
+    .jto-section-alt { background: var(--jto-surface-alt); }
+
+    .jto-card {
+        height: 100%;
+        background: var(--jto-surface);
+        border: 1px solid var(--jto-border);
+        border-radius: 1rem;
+        padding: 2rem;
+        transition: transform .2s ease, box-shadow .2s ease;
+        &:hover { transform: translateY(-4px); box-shadow: 0 18px 40px -20px rgba(15, 33, 51, .35); }
+        h3 { font-size: 1.25rem; font-weight: 700; margin: 1.25rem 0 .75rem; }
+        p { color: var(--jto-ink-soft); line-height: 1.6; }
+        ul { padding-left: 1.1rem; margin: 0; color: var(--jto-ink-soft); li { margin: .3rem 0; } }
+    }
+    .jto-card-icon {
+        width: 56px;
+        height: 56px;
+        border-radius: .9rem;
+        display: grid;
+        place-items: center;
+        color: var(--jto-accent);
+        background: rgba(31, 163, 138, .12);
+    }
+
+    .jto-step {
+        height: 100%;
+        background: var(--jto-surface);
+        border-radius: 1rem;
+        padding: 1.75rem;
+        border: 1px solid var(--jto-border);
+        h3 { font-size: 1.15rem; font-weight: 700; margin: 1rem 0 .5rem; }
+        p { color: var(--jto-ink-soft); margin: 0; line-height: 1.6; }
+    }
+    .jto-step-num {
+        display: inline-grid;
+        place-items: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: var(--jto-navy);
+        color: #fff;
+        font-weight: 700;
+    }
+
+    .jto-why {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        li {
+            display: flex;
+            gap: 1rem;
+            padding: 1.1rem 0;
+            border-bottom: 1px solid var(--jto-border);
+            line-height: 1.6;
+            color: var(--jto-ink-soft);
+            &:last-child { border-bottom: 0; }
+            strong { color: var(--jto-ink); }
+        }
+        .jto-icon { color: var(--jto-accent); width: 24px; height: 24px; margin-top: .15rem; }
+    }
+
+    .jto-cta {
+        padding: 5rem 0;
+        color: #fff;
+        background: linear-gradient(160deg, var(--jto-navy-2) 0%, var(--jto-navy) 100%);
+        .jto-lead { color: rgba(255, 255, 255, .85); }
+    }
+
+    @media (max-width: 575.98px) {
+        .jto-hero { padding: 1.5rem 0 3.5rem; }
+        .jto-section, .jto-cta { padding: 3.5rem 0; }
+        .jto-actions .btn { width: 100%; justify-content: center; }
+    }
+}

@@ -1,0 +1,359 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* jto_consultant_landing
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 20.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-04 20:45+0000\n"
+"PO-Revision-Date: 2026-11-04 20:45+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: jto_consultant_landing
+#: model:website.page,url:jto_consultant_landing.landing_page_record
+msgid "/joel-tovar"
+msgstr "/joel-tovar"
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid "<span aria-hidden=\"true\">/</span>"
+msgstr "<span aria-hidden=\"true\">/</span>"
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid "<span class=\"jto-step-num\">1</span>"
+msgstr "<span class=\"jto-step-num\">1</span>"
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid "<span class=\"jto-step-num\">2</span>"
+msgstr "<span class=\"jto-step-num\">2</span>"
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid "<span class=\"jto-step-num\">3</span>"
+msgstr "<span class=\"jto-step-num\">3</span>"
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid "<span class=\"jto-step-num\">4</span>"
+msgstr "<span class=\"jto-step-num\">4</span>"
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid "<span>Book a consultation</span>"
+msgstr "<span>Agenda una consulta</span>"
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid "<span>Business analysis and development</span>"
+msgstr "<span>Análisis y desarrollo de negocio</span>"
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid "<span>CCTV systems for buildings and stores</span>"
+msgstr "<span>Sistemas de CCTV para edificios y locales</span>"
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid "<span>Contact me</span>"
+msgstr "<span>Contáctame</span>"
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid "<span>LinkedIn</span>"
+msgstr "<span>LinkedIn</span>"
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid "<span>On-premises cloud solutions</span>"
+msgstr "<span>Soluciones de nube local (on-premise)</span>"
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid "<span>View LinkedIn profile</span>"
+msgstr "<span>Ver perfil de LinkedIn</span>"
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid ""
+"<strong>One partner, end to end.</strong> From the business case to the "
+"installed system, without having to coordinate several providers."
+msgstr ""
+"<strong>Un solo aliado, de principio a fin.</strong> Desde el análisis del "
+"negocio hasta el sistema instalado, sin tener que coordinar a varios "
+"proveedores."
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid ""
+"<strong>Solutions that fit your size.</strong> Practical recommendations for"
+" small and medium businesses, not one-size-fits-all packages."
+msgstr ""
+"<strong>Soluciones a tu medida.</strong> Recomendaciones prácticas para "
+"pequeñas y medianas empresas, no paquetes genéricos."
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid ""
+"<strong>Your data stays yours.</strong> On-premises solutions that keep your"
+" information under your control."
+msgstr ""
+"<strong>Tus datos siguen siendo tuyos.</strong> Soluciones on-premise que "
+"mantienen tu información bajo tu control."
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid "A simple, transparent process"
+msgstr "Un proceso sencillo y transparente"
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid "Analyze"
+msgstr "Analizar"
+
+#. module: jto_consultant_landing
+#: model:ir.module.module,summary:base.module_jto_consultant_landing
+msgid ""
+"Bilingual (English/Spanish) landing page for business consultant Joel Tovar"
+msgstr ""
+"Página de aterrizaje bilingüe (inglés/español) del consultor de negocios "
+"Joel Tovar"
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid "Business Analyst &amp; Consultant"
+msgstr "Analista de Negocios y Consultor"
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid "Business analysis &amp; development"
+msgstr "Análisis y desarrollo de negocio"
+
+#. module: jto_consultant_landing
+#: model:ir.ui.view,website_meta_description:jto_consultant_landing.landing_page
+msgid ""
+"Business analysis and business development, CCTV camera systems for "
+"buildings and stores, and on-premises cloud solutions."
+msgstr ""
+"Análisis y desarrollo de negocio, sistemas de cámaras CCTV para edificios y "
+"locales, y soluciones de nube local (on-premise)."
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid "Business vision with hands-on technical experience"
+msgstr "Visión de negocio con experiencia técnica práctica"
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid ""
+"Closed-circuit camera systems for office buildings, stores and commercial "
+"premises, designed around your space and your needs."
+msgstr ""
+"Sistemas de cámaras de circuito cerrado para edificios de oficinas, tiendas "
+"y locales comerciales, diseñados según tu espacio y tus necesidades."
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid "Data-driven decision making"
+msgstr "Toma de decisiones basada en datos"
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid "Discover"
+msgstr "Descubrir"
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid "EN"
+msgstr "EN"
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid "ES"
+msgstr "ES"
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid "File storage, backups and secure remote access"
+msgstr ""
+"Almacenamiento de archivos, copias de seguridad y acceso remoto seguro"
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid "Growth and business development strategy"
+msgstr "Estrategia de crecimiento y desarrollo de negocio"
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid "How I can help your business"
+msgstr "Cómo puedo ayudar a tu negocio"
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid "How I work"
+msgstr "Cómo trabajo"
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid ""
+"I deliver the solution: a growth plan, a camera system or your own cloud."
+msgstr ""
+"Entrego la solución: un plan de crecimiento, un sistema de cámaras o tu "
+"propia nube."
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid ""
+"I help businesses grow by connecting strategy, processes and technology: "
+"from business development to security camera systems and on-premises cloud "
+"solutions."
+msgstr ""
+"Ayudo a las empresas a crecer conectando estrategia, procesos y tecnología: "
+"desde el desarrollo de negocio hasta sistemas de cámaras de seguridad y "
+"soluciones de nube local."
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid "I review your processes, premises and systems to find what to improve."
+msgstr ""
+"Reviso tus procesos, instalaciones y sistemas para encontrar qué mejorar."
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid "I stay by your side to measure results and keep everything running."
+msgstr "Te acompaño para medir resultados y mantener todo funcionando."
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid ""
+"I study how your business works today, find the bottlenecks and "
+"opportunities, and turn them into a clear plan to grow."
+msgstr ""
+"Estudio cómo funciona hoy tu negocio, identifico cuellos de botella y "
+"oportunidades, y los convierto en un plan claro para crecer."
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid "Implement"
+msgstr "Implementar"
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid "Installation and configuration"
+msgstr "Instalación y configuración"
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid "JT"
+msgstr "JT"
+
+#. module: jto_consultant_landing
+#: model:ir.module.module,shortdesc:base.module_jto_consultant_landing
+msgid "JTO Consultant Landing Page"
+msgstr "Página de aterrizaje del consultor JTO"
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid "Joel Tovar"
+msgstr "Joel Tovar"
+
+#. module: jto_consultant_landing
+#: model:website.page,name:jto_consultant_landing.landing_page_record
+msgid "Joel Tovar - Landing"
+msgstr "Joel Tovar - Página de inicio"
+
+#. module: jto_consultant_landing
+#: model:ir.ui.view,website_meta_title:jto_consultant_landing.landing_page
+msgid "Joel Tovar | Business Analyst & Consultant"
+msgstr "Joel Tovar | Analista de Negocios y Consultor"
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid "Language"
+msgstr "Idioma"
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid "Let's talk about your business"
+msgstr "Hablemos de tu negocio"
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid "Local recording and remote viewing"
+msgstr "Grabación local y visualización remota"
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid "Maintenance and support"
+msgstr "Mantenimiento y soporte"
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid "On-premises cloud solutions"
+msgstr "Soluciones de nube local (on-premise)"
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid "Process and requirements analysis"
+msgstr "Análisis de procesos y requerimientos"
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid "Security camera systems (CCTV)"
+msgstr "Sistemas de cámaras de seguridad (CCTV)"
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid "Self-hosted business applications"
+msgstr "Aplicaciones de negocio alojadas en tus propios servidores"
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid "Services"
+msgstr "Servicios"
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid "Site survey and system design"
+msgstr "Estudio del lugar y diseño del sistema"
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid "Support"
+msgstr "Acompañar"
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid ""
+"Tell me what you need and I'll get back to you to schedule a first "
+"conversation."
+msgstr ""
+"Cuéntame qué necesitas y me pondré en contacto contigo para agendar una "
+"primera conversación."
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid "We talk about your business, your goals and your current challenges."
+msgstr "Conversamos sobre tu negocio, tus objetivos y tus retos actuales."
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid "Why work with me"
+msgstr "Por qué trabajar conmigo"
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid ""
+"Your own private cloud, running on your own hardware: keep control of your "
+"data without depending on third-party services."
+msgstr ""
+"Tu propia nube privada, funcionando en tu propio hardware: mantén el control"
+" de tus datos sin depender de servicios de terceros."
