@@ -1,0 +1,115 @@
+<section class="container py-4">
+    <div class="text-center mb-4">
+        <h2 class="text-primary">Server Services</h2>
+        <h4 class="text-muted">Every service running on the server: its URL, live up/down status, and buttons to turn it on or off</h4>
+    </div>
+
+    <h3>What it does</h3>
+    <ul>
+        <li><b>List of services</b> (Server Services app, administrators only): name, clickable URL, who can reach it
+            (public, tailnet, home network, this server only), main user/password with a copy button, and notes.</li>
+        <li><b>Status (Up / Down)</b>: whether the service's address answers. A host script tests every service every
+            2 minutes. If no check arrives for 10 minutes, the status goes back to <i>Unknown</i>.</li>
+        <li><b>Power (Running / Partly running / Stopped)</b> and <b>Turn on / Turn off</b> buttons in the list and the form.
+            They start or stop the Docker containers or systemd units listed in the <i>Container / unit</i> field.</li>
+    </ul>
+
+    <h3>How it works</h3>
+    <p>Odoo runs in Docker, so it can't reach the host's containers, systemd units or Tailscale addresses itself.
+        Two scripts in <code>~/odoo20/server-services-checker/</code> run <b>on the host</b> and talk to Odoo
+        at <code>http://127.0.0.1:8069</code> with a secret token:</p>
+    <table class="table table-sm table-bordered">
+        <thead><tr><th>Script</th><th>Does</th><th>Odoo endpoints</th></tr></thead>
+        <tbody>
+            <tr>
+                <td><code>check_services.py</code></td>
+                <td>Tests every service's Check URL (or URL) and sends Up/Down. Runs once and exits, every 2 minutes.</td>
+                <td><code>/server_services/checker/targets</code>, <code>/server_services/checker/results</code></td>
+            </tr>
+            <tr>
+                <td><code>service_control.py</code></td>
+                <td>Keeps running. Every 2 seconds it picks up Turn on / Turn off requests, runs
+                    <code>docker start|stop</code> or <code>sudo -n systemctl start|stop</code>, and reports Power.</td>
+                <td><code>/server_services/control/poll</code>, <code>/server_services/control/report</code></td>
+            </tr>
+        </tbody>
+    </table>
+    <p>Clicking a button only saves the request. The page waits up to 25 seconds for <code>service_control.py</code>
+        to finish, then refreshes. A request nobody picks up within 2 minutes fails with
+        <i>"the control agent didn't answer: is it running?"</i>.</p>
+    <p>The <code>/server_services</code> paths are blocked for public visitors by nginx
+        (<code>~/odoo20/nginx/odoo.conf</code>). Requests without the right token get a 403.</p>
+
+    <h3>Setup after installing</h3>
+    <ol>
+        <li class="mb-3"><b>Token.</b> Installing the module creates the system parameter
+            <code>jto_server_services.checker_token</code> (Settings &rarr; Technical &rarr; System Parameters).
+            Copy its value into a file next to the scripts, readable only by you:
+<pre class="bg-light p-2 border">cd ~/odoo20/server-services-checker
+nano token          # paste the value, save
+chmod 600 token</pre>
+        </li>
+        <li class="mb-3"><b>Cron jobs.</b> Run <code>crontab -e</code> and add both lines. Each line has <b>five</b>
+            time fields before the command. If one <code>*</code> goes missing, crontab rejects the whole file
+            (it asks "Do you want to retry the same edit?": answer <code>y</code> and fix it).
+<pre class="bg-light p-2 border"># Status check (Up / Down) every 2 minutes
+*/2 * * * * /usr/bin/python3 -I /home/brownie/odoo20/server-services-checker/check_services.py &gt;&gt; /home/brownie/odoo20/server-services-checker/errors.log 2&gt;&amp;1
+
+# Turn on / Turn off agent: started every minute, flock keeps it to one copy (restarts it if it dies or after a reboot)
+* * * * * /usr/bin/flock -n /home/brownie/odoo20/server-services-checker/.control.lock /usr/bin/python3 -I /home/brownie/odoo20/server-services-checker/service_control.py &gt;&gt; /home/brownie/odoo20/server-services-checker/errors.log 2&gt;&amp;1</pre>
+            Check that both lines are saved, and that the agent starts within a minute:
+<pre class="bg-light p-2 border">crontab -l
+pgrep -af service_control</pre>
+        </li>
+        <li class="mb-3"><b>System services (optional).</b> Docker containers work without this, because your user is in
+            the <code>docker</code> group. Starting or stopping a systemd unit (Jellyfin, CUPS...) needs a sudoers rule,
+            and that rule is also the list of units you allow. Run
+            <code>sudo visudo -f /etc/sudoers.d/server-services</code> and add one line with only the units you want:
+<pre class="bg-light p-2 border">brownie ALL=(root) NOPASSWD: /usr/bin/systemctl start jellyfin.service, /usr/bin/systemctl stop jellyfin.service, /usr/bin/systemctl start cups.service, /usr/bin/systemctl stop cups.service</pre>
+            Without it, the button shows <i>"no sudoers rule allows 'systemctl start ...'"</i>.
+            Leaving <code>ssh.service</code> out is safer, so you can't lock yourself out of the server.
+        </li>
+        <li class="mb-3"><b>Test it.</b> Run the agent by hand with <code>-v</code> to see what it does
+            (stop it with Ctrl+C):
+<pre class="bg-light p-2 border">python3 -I ~/odoo20/server-services-checker/check_services.py -v
+python3 -I ~/odoo20/server-services-checker/service_control.py -v</pre>
+            Errors from both scripts go to <code>~/odoo20/server-services-checker/errors.log</code>.
+        </li>
+    </ol>
+
+    <h3>Turn on / Turn off rules</h3>
+    <ul>
+        <li>Buttons only show for services whose <i>Runs as</i> is Docker or System service and that have a
+            <i>Container / unit</i> (comma-separated names).</li>
+        <li><b>This Odoo is never turned off from Odoo itself.</b> The containers <code>odoo20-odoo-1</code>,
+            <code>odoo20-db-1</code> and <code>odoo20-nginx-1</code> are skipped both in Odoo and in the agent.
+            A service that only uses them (Odoo backend, Odoo website) gets no buttons. For the joeltovar.com service,
+            the buttons only stop or start the Cloudflare tunnel.</li>
+        <li><b>Order:</b> Turn off stops the containers in the listed order. Turn on starts them in reverse order, so list
+            dependencies (databases, VPN) <b>last</b>: e.g. <code>qbittorrent, gluetun</code>.</li>
+        <li>Services that share a container (e.g. Immich and Immich public) turn on and off together.</li>
+        <li>A container has to exist (created once with <code>docker compose up -d</code>).
+            <code>docker start</code> can't bring back a container removed with <code>docker compose down</code>.</li>
+    </ul>
+
+    <h3>Troubleshooting</h3>
+    <table class="table table-sm table-bordered">
+        <thead><tr><th>You see</th><th>Fix</th></tr></thead>
+        <tbody>
+            <tr><td>"Still working on it" or "the control agent didn't answer"</td>
+                <td><code>service_control.py</code> isn't running. Check <code>crontab -l</code> (five fields),
+                    <code>pgrep -af service_control</code> and <code>errors.log</code>, then click again.</td></tr>
+            <tr><td>Every Status stays <i>Unknown</i></td>
+                <td><code>check_services.py</code> isn't running or gets 403: check the cron line and the
+                    <code>token</code> file.</td></tr>
+            <tr><td>Power <i>Unknown</i></td>
+                <td>The agent hasn't reported yet, or a name in <i>Container / unit</i> doesn't exist
+                    (check <code>docker ps -a</code>).</td></tr>
+            <tr><td>"no sudoers rule allows ..."</td>
+                <td>Add that unit to <code>/etc/sudoers.d/server-services</code> (step 3).</td></tr>
+        </tbody>
+    </table>
+
+    <p class="text-muted small">Passwords are stored in the database only, never in this module's data:
+        the repository is public.</p>
+</section>
