@@ -86,7 +86,10 @@ python3 -I ~/odoo20/server-services-checker/service_control.py -v</pre>
             A service that only uses them (Odoo backend, Odoo website) gets no buttons. For the joeltovar.com service,
             the buttons only stop or start the Cloudflare tunnel.</li>
         <li><b>Order:</b> Turn off stops the containers in the listed order. Turn on starts them in reverse order, so list
-            dependencies (databases, VPN) <b>last</b>: e.g. <code>qbittorrent, gluetun</code>.</li>
+            dependencies (databases, VPN) <b>last</b>: e.g. <code>qbittorrent, gluetun</code>.
+            Before starting the next one, the agent waits (up to 90 s) until a container with a health check is
+            <i>healthy</i>, because <code>docker start</code> ignores compose's <code>depends_on</code>. Otherwise
+            qBittorrent starts before the VPN tunnel exists and DHT never connects.</li>
         <li>Services that share a container (e.g. Immich and Immich public) turn on and off together.</li>
         <li>A container has to exist (created once with <code>docker compose up -d</code>).
             <code>docker start</code> can't bring back a container removed with <code>docker compose down</code>.</li>
