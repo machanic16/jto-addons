@@ -1,7 +1,7 @@
 {
     "name": "Server Services",
-    "summary": "List of every service running on the server, with its URL and live status",
-    "version": "20.0.1.0.0",
+    "summary": "List of every service running on the server, with its URL, live status and on/off buttons",
+    "version": "20.0.1.2.0",
     "category": "Administration",
     "author": "machanic16",
     "license": "LGPL-3",

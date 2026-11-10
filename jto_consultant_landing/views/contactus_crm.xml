@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- /contactus creates a CRM lead/opportunity instead of sending an e-mail. -->
+    <template id="contactus_form_crm_lead" name="Contact Form: create CRM lead" inherit_id="website.contactus" priority="99">
+        <xpath expr="//form[@id='contactus_form']" position="attributes">
+            <attribute name="data-model_name">crm.lead</attribute>
+        </xpath>
+        <!-- Visitor's name -> lead contact name -->
+        <xpath expr="//input[@name='name']" position="attributes">
+            <attribute name="name">contact_name</attribute>
+        </xpath>
+        <!-- Example text in the phone field: Spanish format instead of the US placeholder -->
+        <xpath expr="//input[@name='phone']" position="attributes">
+            <attribute name="placeholder">+34 600 000 000</attribute>
+        </xpath>
+        <!-- Company -> lead company name -->
+        <xpath expr="//input[@name='company']" position="attributes">
+            <attribute name="name">partner_name</attribute>
+        </xpath>
+        <!-- Subject -> lead title -->
+        <xpath expr="//input[@name='subject']" position="attributes">
+            <attribute name="name">name</attribute>
+        </xpath>
+        <!-- "Email To" only applies to the e-mail version of the form. -->
+        <xpath expr="//input[@name='email_to']/ancestor::div[hasclass('s_website_form_dnone')][1]" position="replace"/>
+
+        <!-- Clean page: only a short message and the form. Select by structure/classes,
+             never by text (views are stored translated). -->
+        <!-- Drop every default section after the form (title banner, FAQ, separator, accordion) -->
+        <xpath expr="//div[@id='wrap']/*[position() &gt; 1]" position="replace"/>
+        <xpath expr="//div[@id='wrap']/*[position() &gt; 1]" position="replace"/>
+        <xpath expr="//div[@id='wrap']/*[position() &gt; 1]" position="replace"/>
+        <xpath expr="//div[@id='wrap']/*[position() &gt; 1]" position="replace"/>
+        <!-- Drop the stock picture column and center the form -->
+        <xpath expr="//section[hasclass('s_form_aside')]//img/ancestor::div[hasclass('col-12')][1]" position="replace"/>
+        <xpath expr="//section[hasclass('s_form_aside')]//h1/ancestor::div[hasclass('col-12')][1]" position="attributes">
+            <attribute name="class">col-12 col-lg-8 offset-lg-2</attribute>
+            <attribute name="style"/>
+        </xpath>
+        <xpath expr="//section[hasclass('s_form_aside')]" position="attributes">
+            <attribute name="class">s_form_aside pt48 pb80</attribute>
+            <attribute name="data-oe-shape-data"/>
+        </xpath>
+        <!-- No decorative background shape -->
+        <xpath expr="//section[hasclass('s_form_aside')]/div[hasclass('o_we_shape')]" position="replace"/>
+        <!-- "Message" label has no Spanish translation in Odoo: provide our own -->
+        <xpath expr="//textarea[@name='description']/preceding-sibling::label//span[hasclass('s_website_form_label_content')]" position="replace">
+            <span class="s_website_form_label_content">Message</span>
+        </xpath>
+        <!-- Heading and message -->
+        <xpath expr="//section[hasclass('s_form_aside')]//h1" position="replace">
+            <h1 class="h2-fs">Let's talk</h1>
+        </xpath>
+        <xpath expr="//section[hasclass('s_form_aside')]//p[hasclass('lead')]" position="replace">
+            <p class="lead">Fill in the form and I'll get in touch with you soon.</p>
+        </xpath>
+        <!-- No stock help text under the message box -->
+        <xpath expr="//textarea[@name='description']/following-sibling::span[hasclass('s_website_form_field_description')]" position="replace"/>
+        <!-- Neutral placeholders instead of the demo ones -->
+        <xpath expr="//input[@name='contact_name']" position="attributes">
+            <attribute name="placeholder">Your full name</attribute>
+        </xpath>
+        <xpath expr="//input[@name='email_from']" position="attributes">
+            <attribute name="placeholder">you@email.com</attribute>
+        </xpath>
+        <xpath expr="//input[@name='partner_name']" position="attributes">
+            <attribute name="placeholder">Your company (optional)</attribute>
+        </xpath>
+        <xpath expr="//input[@name='name']" position="attributes">
+            <attribute name="placeholder">How can I help you?</attribute>
+        </xpath>
+        <xpath expr="//textarea[@name='description']" position="attributes">
+            <attribute name="placeholder">Tell me briefly about your business and what you need</attribute>
+        </xpath>
+    </template>
+
+    <!-- Thank-you page: first person (Joel), not the stock plural "we". -->
+    <template id="contactus_thanks_message" name="Thanks page: Joel's message" inherit_id="website.contactus_thanks_ir_ui_view" priority="99">
+        <xpath expr="//h1" position="replace">
+            <h1 class="fw-bolder">Thank you!</h1>
+        </xpath>
+        <xpath expr="//p[hasclass('lead')]" position="replace">
+            <p class="lead">I've received your message and I'll get in touch with you soon.</p>
+        </xpath>
+    </template>
+    <!-- Website team / assignee are set once in Website settings (base.default_website is noupdate). -->
+</odoo>

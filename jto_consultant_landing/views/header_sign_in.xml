@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- No "Sign in" button on the public site: /web/login is blocked for internet
+         visitors by nginx, so the link would only lead to a 404. Log in via Tailscale. -->
+    <template id="hide_public_sign_in" name="Hide public Sign in button"
+              inherit_id="portal.user_sign_in" priority="99">
+        <!-- Keep the element (portal.user_sign_in_redirect edits its link), just never render it -->
+        <xpath expr="//li" position="attributes">
+            <attribute name="t-if">False</attribute>
+        </xpath>
+    </template>
+
+    <!-- Header button: first person ("Contact me"), not the stock plural "Contact Us" -->
+    <template id="header_cta_contact_me" name="Header button: Contact me"
+              inherit_id="website.header_call_to_action" priority="99">
+        <xpath expr="//a[hasclass('btn_cta')]" position="replace">
+            <a href="/contactus" class="oe_unremovable btn btn-primary btn_cta">Contact me</a>
+        </xpath>
+    </template>
+</odoo>

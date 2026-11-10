@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Footer cleanup: no "About us" (placeholder text written in plural), no placeholder
+         e-mail, and the phone is the admin user's (Joel's) number, read live.
+         Text replacements come before attribute changes (later xpaths select on hrefs). -->
+    <template id="footer_cleanup" name="Footer: Joel Tovar contact" inherit_id="website.footer_custom" priority="99">
+        <!-- Phone: admin partner's number (fallback: company phone) -->
+        <xpath expr="//a[starts-with(@href, 'tel:')]" position="before">
+            <t t-set="jto_phone" t-value="env.ref('base.user_admin').sudo().partner_id.phone or res_company.phone or ''"/>
+        </xpath>
+        <xpath expr="//a[starts-with(@href, 'tel:')]//span[hasclass('o_force_ltr')]" position="replace">
+            <span class="o_force_ltr" t-out="jto_phone"/>
+        </xpath>
+        <xpath expr="//a[starts-with(@href, 'tel:')]" position="attributes">
+            <attribute name="href"/>
+            <attribute name="t-att-href">'tel:' + ''.join(c for c in jto_phone if c.isdigit() or c == '+')</attribute>
+        </xpath>
+
+        <!-- Remove the placeholder e-mail line -->
+        <xpath expr="//a[starts-with(@href, 'mailto:')]/ancestor::li[1]" position="replace"/>
+
+        <!-- Remove the "About us" column and the dead "About us" link (first href="#" in Useful Links).
+             Select by layout classes, never by text: the footer is stored translated. -->
+        <xpath expr="//div[hasclass('col-lg-5')]" position="replace"/>
+        <xpath expr="(//div[hasclass('col-lg-2')]//a[@href='#'])[1]/ancestor::li[1]" position="replace"/>
+
+        <!-- Two columns left: keep "Connect with us" aligned to the right -->
+        <xpath expr="//div[hasclass('col-lg-4') and hasclass('offset-lg-1')]" position="attributes">
+            <attribute name="class">col-lg-4 offset-lg-6 pt24 pb24</attribute>
+        </xpath>
+        <!-- Useful links: drop the dead Products and Legal links (href="#"), and point
+             Services to the services section of the landing page. After the "About us"
+             removal above, the remaining href="#" links are, in order: Products,
+             Services, Legal, so each xpath below targets the first one left. -->
+        <xpath expr="(//div[hasclass('col-lg-2')]//a[@href='#'])[1]/ancestor::li[1]" position="replace"/>
+        <xpath expr="(//div[hasclass('col-lg-2')]//a[@href='#'])[1]" position="attributes">
+            <attribute name="href">/#services</attribute>
+        </xpath>
+        <xpath expr="(//div[hasclass('col-lg-2')]//a[@href='#'])[1]/ancestor::li[1]" position="replace"/>
+
+        <!-- Social icons: only LinkedIn (Joel's profile) and the home icon -->
+        <xpath expr="//a[hasclass('s_social_media_facebook')]" position="replace"/>
+        <xpath expr="//a[hasclass('s_social_media_twitter')]" position="replace"/>
+        <xpath expr="//a[hasclass('s_social_media_linkedin')]" position="attributes">
+            <attribute name="href">https://www.linkedin.com/in/joel-tovar</attribute>
+            <attribute name="rel">noopener</attribute>
+        </xpath>
+
+        <!-- First person instead of the stock plural: "Contact" heading, "Contact me" links.
+             After the class change above, the contact column is the offset-lg-6 one. -->
+        <xpath expr="//div[hasclass('offset-lg-6')]/h5" position="replace">
+            <h5>Contact</h5>
+        </xpath>
+        <xpath expr="(//a[@href='/contactus'])[1]" position="replace">
+            <a href="/contactus">Contact me</a>
+        </xpath>
+        <xpath expr="(//a[@href='/contactus'])[2]" position="replace">
+            <a href="/contactus">Contact me</a>
+        </xpath>
+    </template>
+</odoo>

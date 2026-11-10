@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Header phone = the admin user's (Joel's) phone, read live from his contact.
+         Falls back to the company phone if the admin has none.
+         Order matters: replace the text first, then the href (later xpaths find the
+         links by their original tel: href). -->
+    <template id="header_phone_from_admin" name="Header phone: admin user's number"
+              inherit_id="website.header_text_element" priority="99">
+        <xpath expr="//li/*[1]" position="before">
+            <t t-set="jto_phone" t-value="env.ref('base.user_admin').sudo().partner_id.phone or res_company.phone or ''"/>
+            <t t-set="jto_phone_href" t-value="'tel:' + ''.join(c for c in jto_phone if c.isdigit() or c == '+')"/>
+        </xpath>
+
+        <!-- Variant "phone + mail" -->
+        <xpath expr="//t[@t-elif=&quot;_txt_elt_content == 'phone_mail'&quot;]//a[starts-with(@href, 'tel:')]//span[hasclass('o_force_ltr')]" position="replace">
+            <span class="o_force_ltr" t-out="jto_phone"/>
+        </xpath>
+        <xpath expr="//t[@t-elif=&quot;_txt_elt_content == 'phone_mail'&quot;]//a[starts-with(@href, 'tel:')]" position="attributes">
+            <attribute name="href"/>
+            <attribute name="t-att-href">jto_phone_href</attribute>
+        </xpath>
+
+        <!-- Variant "mail_stretched" (shows a phone despite its name) -->
+        <xpath expr="//t[@t-elif=&quot;_txt_elt_content == 'mail_stretched'&quot;]//a[starts-with(@href, 'tel:')]//small" position="replace">
+            <small t-out="jto_phone"/>
+        </xpath>
+        <xpath expr="//t[@t-elif=&quot;_txt_elt_content == 'mail_stretched'&quot;]//a[starts-with(@href, 'tel:')]" position="attributes">
+            <attribute name="href"/>
+            <attribute name="t-att-href">jto_phone_href</attribute>
+        </xpath>
+
+        <!-- Default variant (phone only): the one this website uses -->
+        <xpath expr="//t[@t-else='']//a[starts-with(@href, 'tel:')]//small" position="replace">
+            <small t-out="jto_phone"/>
+        </xpath>
+        <xpath expr="//t[@t-else='']//a[starts-with(@href, 'tel:')]" position="attributes">
+            <attribute name="href"/>
+            <attribute name="t-att-href">jto_phone_href</attribute>
+        </xpath>
+    </template>
+</odoo>

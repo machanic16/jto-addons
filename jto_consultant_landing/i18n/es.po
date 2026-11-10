@@ -1,13 +1,10 @@
-# Translation of Odoo Server.
-# This file contains the translation of the following modules:
-# 	* jto_consultant_landing
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 20.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-04 20:45+0000\n"
-"PO-Revision-Date: 2026-11-04 20:45+0000\n"
+"POT-Creation-Date: 2026-11-05 23:13+0000\n"
+"PO-Revision-Date: 2026-11-05 23:13+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -47,6 +44,11 @@ msgid "<span class=\"jto-step-num\">4</span>"
 msgstr "<span class=\"jto-step-num\">4</span>"
 
 #. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.contactus_form_crm_lead
+msgid "<span class=\"s_website_form_label_content\">Message</span>"
+msgstr "<span class=\"s_website_form_label_content\">Mensaje</span>"
+
+#. module: jto_consultant_landing
 #: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
 msgid "<span>Book a consultation</span>"
 msgstr "<span>Agenda una consulta</span>"
@@ -78,8 +80,18 @@ msgstr "<span>Soluciones de nube local (on-premise)</span>"
 
 #. module: jto_consultant_landing
 #: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid "<span>Open-source implementation consulting</span>"
+msgstr "<span>Asesoría para implementar soluciones open source</span>"
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
 msgid "<span>View LinkedIn profile</span>"
 msgstr "<span>Ver perfil de LinkedIn</span>"
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid "<span>Watch video</span>"
+msgstr "<span>Ver vídeo</span>"
 
 #. module: jto_consultant_landing
 #: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
@@ -153,6 +165,17 @@ msgstr "Visión de negocio con experiencia técnica práctica"
 
 #. module: jto_consultant_landing
 #: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid "Choosing the right open-source tools for your needs"
+msgstr ""
+"Selección de las herramientas open source adecuadas para tus necesidades"
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid "Close"
+msgstr "Cerrar"
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
 msgid ""
 "Closed-circuit camera systems for office buildings, stores and commercial "
 "premises, designed around your space and your needs."
@@ -161,9 +184,25 @@ msgstr ""
 "y locales comerciales, diseñados según tu espacio y tus necesidades."
 
 #. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.footer_cleanup
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.footer_cleanup
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.header_cta_contact_me
+msgid "Contact me"
+msgstr "Contáctame"
+
+#. module: jto_consultant_landing
 #: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
 msgid "Data-driven decision making"
 msgstr "Toma de decisiones basada en datos"
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid "Deployment, migration and configuration"
+msgstr "Implementación, migración y configuración"
 
 #. module: jto_consultant_landing
 #: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
@@ -182,9 +221,24 @@ msgstr "ES"
 
 #. module: jto_consultant_landing
 #: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid "English"
+msgstr "English"
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid "Español"
+msgstr "Español"
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
 msgid "File storage, backups and secure remote access"
 msgstr ""
 "Almacenamiento de archivos, copias de seguridad y acceso remoto seguro"
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.contactus_form_crm_lead
+msgid "Fill in the form and I'll get in touch with you soon."
+msgstr "Completa el formulario y pronto me pondré en contacto contigo."
 
 #. module: jto_consultant_landing
 #: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
@@ -200,6 +254,11 @@ msgstr "Cómo puedo ayudar a tu negocio"
 #: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
 msgid "How I work"
 msgstr "Cómo trabajo"
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.contactus_form_crm_lead
+msgid "How can I help you?"
+msgstr "¿En qué te puedo ayudar?"
 
 #. module: jto_consultant_landing
 #: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
@@ -239,6 +298,11 @@ msgid ""
 msgstr ""
 "Estudio cómo funciona hoy tu negocio, identifico cuellos de botella y "
 "oportunidades, y los convierto en un plan claro para crecer."
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.contactus_thanks_message
+msgid "I've received your message and I'll get in touch with you soon."
+msgstr "He recibido tu mensaje y pronto me pondré en contacto contigo."
 
 #. module: jto_consultant_landing
 #: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
@@ -281,6 +345,11 @@ msgid "Language"
 msgstr "Idioma"
 
 #. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.contactus_form_crm_lead
+msgid "Let's talk"
+msgstr "Hablemos"
+
+#. module: jto_consultant_landing
 #: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
 msgid "Let's talk about your business"
 msgstr "Hablemos de tu negocio"
@@ -302,8 +371,24 @@ msgstr "Soluciones de nube local (on-premise)"
 
 #. module: jto_consultant_landing
 #: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid "Open-source implementation consulting"
+msgstr "Asesoría para implementar soluciones open source"
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
 msgid "Process and requirements analysis"
 msgstr "Análisis de procesos y requerimientos"
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid ""
+"Professional software without license fees: I help you choose, deploy and "
+"maintain open-source solutions such as ERP systems, photo and file "
+"management or media servers."
+msgstr ""
+"Software profesional sin costos de licencia: te ayudo a elegir, implementar "
+"y mantener soluciones open source como sistemas ERP, gestión de fotos y "
+"archivos o servidores multimedia."
 
 #. module: jto_consultant_landing
 #: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
@@ -331,6 +416,11 @@ msgid "Support"
 msgstr "Acompañar"
 
 #. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.contactus_form_crm_lead
+msgid "Tell me briefly about your business and what you need"
+msgstr "Cuéntame brevemente sobre tu negocio y lo que necesitas"
+
+#. module: jto_consultant_landing
 #: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
 msgid ""
 "Tell me what you need and I'll get back to you to schedule a first "
@@ -338,6 +428,16 @@ msgid ""
 msgstr ""
 "Cuéntame qué necesitas y me pondré en contacto contigo para agendar una "
 "primera conversación."
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.contactus_thanks_message
+msgid "Thank you!"
+msgstr "¡Gracias!"
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
+msgid "Training and ongoing support"
+msgstr "Capacitación y soporte continuo"
 
 #. module: jto_consultant_landing
 #: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
@@ -350,6 +450,16 @@ msgid "Why work with me"
 msgstr "Por qué trabajar conmigo"
 
 #. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.contactus_form_crm_lead
+msgid "Your company (optional)"
+msgstr "Tu empresa (opcional)"
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.contactus_form_crm_lead
+msgid "Your full name"
+msgstr "Tu nombre completo"
+
+#. module: jto_consultant_landing
 #: model_terms:ir.ui.view,arch_db:jto_consultant_landing.landing_page
 msgid ""
 "Your own private cloud, running on your own hardware: keep control of your "
@@ -357,3 +467,8 @@ msgid ""
 msgstr ""
 "Tu propia nube privada, funcionando en tu propio hardware: mantén el control"
 " de tus datos sin depender de servicios de terceros."
+
+#. module: jto_consultant_landing
+#: model_terms:ir.ui.view,arch_db:jto_consultant_landing.contactus_form_crm_lead
+msgid "you@email.com"
+msgstr "tu@correo.com"

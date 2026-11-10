@@ -9,10 +9,15 @@
     "data": [
         "views/landing_page.xml",
         "data/website_page.xml",
+        "views/contactus_crm.xml",
+        "views/header_phone.xml",
+        "views/footer.xml",
+        "views/header_sign_in.xml",
     ],
     "assets": {
         "web.assets_frontend": [
             "jto_consultant_landing/static/src/scss/landing.scss",
+            "jto_consultant_landing/static/src/js/video_modal.js",
         ],
     },
     "post_init_hook": "post_init_hook",

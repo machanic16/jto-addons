@@ -8,6 +8,8 @@
                 <field name="sequence" widget="handle"/>
                 <field name="name"/>
                 <field name="url" widget="url"/>
+                <field name="login" widget="CopyClipboardChar"/>
+                <field name="password" widget="CopyClipboardChar"/>
                 <field name="access" widget="badge"
                        decoration-success="access == 'public'"
                        decoration-info="access == 'tailnet'"
@@ -18,6 +20,22 @@
                        decoration-danger="state == 'down'"
                        decoration-muted="state == 'unknown'"/>
                 <field name="last_check" optional="show"/>
+                <field name="can_control" column_invisible="1"/>
+                <field name="power" widget="badge" optional="show"
+                       invisible="not can_control or control_request"
+                       decoration-success="power == 'running'"
+                       decoration-warning="power == 'partial'"
+                       decoration-danger="power == 'stopped'"
+                       decoration-muted="power == 'unknown'"/>
+                <field name="control_request" widget="badge" string="Pending" decoration-info="1"
+                       invisible="not control_request"/>
+                <button name="action_turn_on" type="object" string="Turn on" icon="fa-play"
+                        class="btn-sm btn-success"
+                        invisible="not can_control or control_request or power == 'running'"/>
+                <button name="action_turn_off" type="object" string="Turn off" icon="fa-stop"
+                        class="btn-sm btn-danger" confirm="Turn this service off?"
+                        invisible="not can_control or control_request or power == 'stopped'"/>
+                <field name="control_message" optional="hide"/>
                 <field name="last_result" optional="hide"/>
                 <field name="category" optional="hide"/>
                 <field name="port" optional="hide"/>
@@ -32,6 +50,14 @@
         <field name="arch" type="xml">
             <form string="Server Service">
                 <header>
+                    <field name="can_control" invisible="1"/>
+                    <field name="control_request" invisible="1"/>
+                    <button name="action_turn_on" type="object" string="Turn on" icon="fa-play"
+                        class="btn-sm btn-success"
+                        invisible="not can_control or control_request or power == 'running'"/>
+                    <button name="action_turn_off" type="object" string="Turn off" icon="fa-stop"
+                        class="btn-sm btn-danger" confirm="Turn this service off?"
+                        invisible="not can_control or control_request or power == 'stopped'"/>
                     <field name="state" widget="statusbar" statusbar_visible="unknown,up,down"/>
                 </header>
                 <sheet>
@@ -46,6 +72,10 @@
                             <field name="access"/>
                             <field name="category"/>
                         </group>
+                        <group string="Credentials (main user)">
+                            <field name="login" widget="CopyClipboardChar"/>
+                            <field name="password" widget="CopyClipboardChar"/>
+                        </group>
                         <group string="Status">
                             <field name="last_check"/>
                             <field name="last_result"/>
@@ -55,6 +85,8 @@
                             <field name="runtime"/>
                             <field name="runtime_ref"/>
                             <field name="port"/>
+                            <field name="power" invisible="not can_control"/>
+                            <field name="control_message" invisible="not control_message"/>
                         </group>
                         <group string="Other">
                             <field name="sequence"/>
@@ -75,6 +107,7 @@
                 <field name="name"/>
                 <field name="url"/>
                 <field name="runtime_ref"/>
+                <field name="login"/>
                 <filter name="public" string="Public" domain="[('access', '=', 'public')]"/>
                 <filter name="tailnet" string="Tailnet only" domain="[('access', '=', 'tailnet')]"/>
                 <filter name="lan" string="Home network" domain="[('access', '=', 'lan')]"/>

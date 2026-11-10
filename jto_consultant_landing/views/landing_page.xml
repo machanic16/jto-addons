@@ -20,6 +20,12 @@
             <t t-elif="icon == 'arrow'">
                 <path d="M5 12h14"/><path d="M13 6l6 6-6 6"/>
             </t>
+            <t t-elif="icon == 'code'">
+                <path d="M8 8l-4 4 4 4"/><path d="M16 8l4 4-4 4"/><path d="M13.5 6l-3 12"/>
+            </t>
+            <t t-elif="icon == 'play'">
+                <circle cx="12" cy="12" r="9"/><path d="M10 8.5l5 3.5-5 3.5z" fill="currentColor"/>
+            </t>
             <t t-elif="icon == 'linkedin'">
                 <rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10.5V16M8 7.5v.01M12 16v-3.2a2.3 2.3 0 0 1 4.6 0V16M12 10.5V16"/>
             </t>
@@ -39,11 +45,11 @@
                             <!-- Same link helper and JS hook as Odoo's own language selector. -->
                             <a t-att-href="url_localized(lang_code='en_US', prefetch_langs=True, force_default_lang=True)"
                                t-attf-class="js_change_lang #{'active' if current_lang == 'en_US' else ''}"
-                               data-url_code="en" hreflang="en">EN</a>
+                               data-url_code="en" hreflang="en" title="English"><img src="/base/static/img/country_flags/gb.png" alt="" class="jto-flag"/>EN</a>
                             <span aria-hidden="true">/</span>
                             <a t-att-href="url_localized(lang_code='es_ES', prefetch_langs=True, force_default_lang=True)"
                                t-attf-class="js_change_lang #{'active' if current_lang == 'es_ES' else ''}"
-                               data-url_code="es" hreflang="es">ES</a>
+                               data-url_code="es" hreflang="es" title="Español"><img src="/base/static/img/country_flags/es.png" alt="" class="jto-flag"/>ES</a>
                         </nav>
                         <div class="row align-items-center g-5">
                             <div class="col-lg-7">
@@ -77,6 +83,10 @@
                                             <t t-set="icon" t-value="'check'"/><t t-call="jto_consultant_landing.landing_icon"/>
                                             <span>On-premises cloud solutions</span>
                                         </li>
+                                        <li>
+                                            <t t-set="icon" t-value="'check'"/><t t-call="jto_consultant_landing.landing_icon"/>
+                                            <span>Open-source implementation consulting</span>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -90,7 +100,7 @@
                         <p class="jto-eyebrow text-center">Services</p>
                         <h2 class="jto-h2 text-center">How I can help your business</h2>
                         <div class="row g-4 mt-2">
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <div class="jto-card">
                                     <div class="jto-card-icon"><t t-set="icon" t-value="'chart'"/><t t-call="jto_consultant_landing.landing_icon"/></div>
                                     <h3>Business analysis &amp; development</h3>
@@ -100,9 +110,13 @@
                                         <li>Growth and business development strategy</li>
                                         <li>Data-driven decision making</li>
                                     </ul>
+                                    <button type="button" class="btn jto-video-btn" data-bs-toggle="modal" data-bs-target="#jto_video_modal" data-jto-video="business-analysis">
+                                        <t t-set="icon" t-value="'play'"/><t t-call="jto_consultant_landing.landing_icon"/>
+                                        <span>Watch video</span>
+                                    </button>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <div class="jto-card">
                                     <div class="jto-card-icon"><t t-set="icon" t-value="'camera'"/><t t-call="jto_consultant_landing.landing_icon"/></div>
                                     <h3>Security camera systems (CCTV)</h3>
@@ -112,9 +126,13 @@
                                         <li>Installation and configuration</li>
                                         <li>Local recording and remote viewing</li>
                                     </ul>
+                                    <button type="button" class="btn jto-video-btn" data-bs-toggle="modal" data-bs-target="#jto_video_modal" data-jto-video="cctv">
+                                        <t t-set="icon" t-value="'play'"/><t t-call="jto_consultant_landing.landing_icon"/>
+                                        <span>Watch video</span>
+                                    </button>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <div class="jto-card">
                                     <div class="jto-card-icon"><t t-set="icon" t-value="'server'"/><t t-call="jto_consultant_landing.landing_icon"/></div>
                                     <h3>On-premises cloud solutions</h3>
@@ -124,6 +142,26 @@
                                         <li>File storage, backups and secure remote access</li>
                                         <li>Maintenance and support</li>
                                     </ul>
+                                    <button type="button" class="btn jto-video-btn" data-bs-toggle="modal" data-bs-target="#jto_video_modal" data-jto-video="cloud">
+                                        <t t-set="icon" t-value="'play'"/><t t-call="jto_consultant_landing.landing_icon"/>
+                                        <span>Watch video</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="jto-card">
+                                    <div class="jto-card-icon"><t t-set="icon" t-value="'code'"/><t t-call="jto_consultant_landing.landing_icon"/></div>
+                                    <h3>Open-source implementation consulting</h3>
+                                    <p>Professional software without license fees: I help you choose, deploy and maintain open-source solutions such as ERP systems, photo and file management or media servers.</p>
+                                    <ul>
+                                        <li>Choosing the right open-source tools for your needs</li>
+                                        <li>Deployment, migration and configuration</li>
+                                        <li>Training and ongoing support</li>
+                                    </ul>
+                                    <button type="button" class="btn jto-video-btn" data-bs-toggle="modal" data-bs-target="#jto_video_modal" data-jto-video="open-source">
+                                        <t t-set="icon" t-value="'play'"/><t t-call="jto_consultant_landing.landing_icon"/>
+                                        <span>Watch video</span>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -209,6 +247,18 @@
                         </div>
                     </div>
                 </section>
+
+                <!-- Service explainer videos (Manim). The file follows the page language. -->
+                <t t-set="video_lang" t-value="'es' if current_lang.startswith('es') else 'en'"/>
+                <div class="modal fade jto-video-modal" id="jto_video_modal" tabindex="-1" aria-hidden="true"
+                     t-att-data-lang="video_lang" data-base="/jto_consultant_landing/static/src/video/">
+                    <div class="modal-dialog modal-dialog-centered modal-xl">
+                        <div class="modal-content">
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"/>
+                            <video controls="controls" playsinline="playsinline" preload="none" class="w-100 d-block"/>
+                        </div>
+                    </div>
+                </div>
             </div>
         </t>
     </template>

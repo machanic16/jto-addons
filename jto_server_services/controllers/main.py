@@ -45,3 +45,43 @@ class ServerServicesChecker(http.Controller):
                 service._apply_check_result(bool(item.get("ok")), str(item.get("detail", "")))
                 updated += 1
         return request.make_json_response({"updated": updated})
+
+    # --- Turn on/off: host-side agent (server-services-checker/service_control.py) ---
+
+    @http.route("/server_services/control/poll", type="http", auth="public",
+                methods=["GET"], csrf=False, save_session=False)
+    def control_poll(self):
+        """Every controllable service (to report power) and the pending on/off requests."""
+        if not self._authorized():
+            return request.make_json_response({"error": "forbidden"}, status=403)
+        services = request.env["server.service"].sudo().search([]).filtered("can_control")
+        return request.make_json_response({
+            "services": [s._control_target() for s in services],
+            "requests": [
+                dict(s._control_target(), action=s.control_request)
+                for s in services.filtered("control_request")
+            ],
+        })
+
+    @http.route("/server_services/control/report", type="http", auth="public",
+                methods=["POST"], csrf=False, save_session=False)
+    def control_report(self):
+        if not self._authorized():
+            return request.make_json_response({"error": "forbidden"}, status=403)
+        try:
+            payload = json.loads(request.httprequest.get_data() or b"{}")
+        except ValueError:
+            return request.make_json_response({"error": "invalid json"}, status=400)
+        if not isinstance(payload, dict):
+            return request.make_json_response({"error": "invalid json"}, status=400)
+        Service = request.env["server.service"].sudo()
+        powers = dict(Service._fields["power"].selection)
+        for item in payload.get("power") or []:
+            service = Service.browse(int(item.get("id", 0))).exists()
+            if service and item.get("power") in powers and service.power != item["power"]:
+                service.power = item["power"]
+        for item in payload.get("done") or []:
+            service = Service.browse(int(item.get("id", 0))).exists()
+            if service:
+                service._apply_control_result(bool(item.get("ok")), str(item.get("message", "")))
+        return request.make_json_response({"ok": True})
